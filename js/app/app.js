@@ -574,6 +574,7 @@ angular
 
 		chart.draw(data, options);
 	}
+	changeElement();
 })
 .controller('removeController',function($scope,TableAndMarkerService,databaseValue,Backendless,toastr){
 	$scope.database = TableAndMarkerService.fixServerData();
