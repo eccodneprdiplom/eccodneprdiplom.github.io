@@ -551,6 +551,7 @@ angular
 	var lastGraf = "nitrogenAmmonia";
 	TableAndMarkerService.table()
 	TableAndMarkerService.prepareDataGraf("nitrogenAmmonia");
+	google.charts.setOnLoadCallback(drawChart);
 	$scope.changeElement = function(index){
 		var variable = index;
 		if (variable){
@@ -573,7 +574,6 @@ angular
 
 		chart.draw(data, options);
 	}
-	google.charts.setOnLoadCallback(drawChart);
 })
 .controller('removeController',function($scope,TableAndMarkerService,databaseValue,Backendless,toastr){
 	$scope.database = TableAndMarkerService.fixServerData();
