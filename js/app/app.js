@@ -549,7 +549,6 @@ angular
 		
 	} 
 	var lastGraf = "nitrogenAmmonia";
-	google.charts.setOnLoadCallback(drawChart);
 	TableAndMarkerService.table()
 	TableAndMarkerService.prepareDataGraf("nitrogenAmmonia");
 	$scope.changeElement = function(index){
@@ -574,7 +573,7 @@ angular
 
 		chart.draw(data, options);
 	}
-	changeElement();
+	google.charts.setOnLoadCallback(drawChart);
 })
 .controller('removeController',function($scope,TableAndMarkerService,databaseValue,Backendless,toastr){
 	$scope.database = TableAndMarkerService.fixServerData();
