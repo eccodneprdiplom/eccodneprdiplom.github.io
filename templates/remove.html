@@ -1,0 +1,26 @@
+<div class='container' style="overflow: auto">
+	<table style='width:80%;border: 4px double black;'>
+		<tbody style='border: 2px solid black;'>
+			<td>Назва об'єкта</td>
+			<td>Дата</td>
+			<td>Фосфати</td>
+			<td>Азот амонійний</td>
+			<td>Нафтопродукти</td>
+			<td>Інші</td>
+			<td>Широта</td>
+			<td>Довгота</td>
+			<td></td>
+		</tbody>
+		<tr ng-repeat="item in database.data track by $index" style='border: 2px solid black;'>
+			<td style='border: 2px solid black;'>{{item.place}}</td>
+			<td style='border: 2px solid black;'>{{item.dateData | date:'MMMM yyyy'}}</td>
+			<td style='border: 2px solid black;'>{{item.phosphates}}</td>
+			<td style='border: 2px solid black;'>{{item.nitrogenAmmonia}}</td>
+			<td style='border: 2px solid black;'>{{item.oil}}</td>
+			<td style='border: 2px solid black;'>{{item.others}}</td>
+			<td style='border: 2px solid black;'>{{item.latitude}}</td>
+			<td style='border: 2px solid black;'>{{item.longitude}}</td>
+			<td style='border: 2px solid black;'><a class = 'btn btn-primary' ng-click='remove(item)'>Видалити</a></td>
+		</tr>
+	<table>
+</div>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app='myApp'>
+<head>
+	<meta charset="UTF-8">
+	<title>Моніторинг водних ресурсів Дніпропетровської області</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/angular-toastr.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNvMQyOtTZelU6ESs-38yQ7QPNaKbIQcU" type="text/javascript"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="js/pdfmake.min.js"></script>
+	<script type="text/javascript" src="js/vfs_fonts.js"></script>
+	<script  src='js/angular.min.js'></script>
+	<script  src='js/angular-route.js'></script>
+	<script  src='js/angular-toastr.min.js'></script>
+	<script  src='js/angular-toastr.tpls.min.js'></script>
+	<script  src='js/backendless.min.js'></script>
+	<script  src ='js/app/app.js'></script>
+</head>
+<body>
+	<div id="wrapper">
+		<header class='main-head'>
+		<div class="header-wrapp">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+					<div class="header-logo">
+						<a href='index.html'><img src="img/eco_logo.png" alt="Logo"></a>
+						<h4>Моніторинг водних ресурсів Дніпропетровської області</h4>
+					</div>
+						<nav class="main-nav">
+							<ul>
+								<li><a href='#/'>Мапа</a></li>
+								<li><a href='#/grafs'>Графіки</a></li>
+								<li><a href='#/add'>Додавання даних</a></li>
+								<li><a href='#/about'>Про автора</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		</header>
+		<div ng-view></div>
+	</div>
+</body>
+</html>
