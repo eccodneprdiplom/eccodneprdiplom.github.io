@@ -545,14 +545,13 @@ angular
 	$scope.toData.setTime(1482323413975);
 	try{
 		google.charts.load('current', {'packages':['corechart']});
-    } catch (err){
+	} catch (err){
 		
 	} 
 	var lastGraf = "nitrogenAmmonia";
 	TableAndMarkerService.table()
 	TableAndMarkerService.prepareDataGraf("nitrogenAmmonia");
 	google.charts.setOnLoadCallback(drawChart);
-	TableAndMarkerService.prepareDataGraf(variable,$scope.fromData,$scope.toData);
 	$scope.changeElement = function(index){
 		var variable = index;
 		if (variable){
