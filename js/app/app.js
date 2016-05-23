@@ -552,6 +552,7 @@ angular
 	TableAndMarkerService.table()
 	TableAndMarkerService.prepareDataGraf("nitrogenAmmonia");
 	google.charts.setOnLoadCallback(drawChart);
+	TableAndMarkerService.prepareDataGraf(variable,$scope.fromData,$scope.toData);
 	$scope.changeElement = function(index){
 		var variable = index;
 		if (variable){
