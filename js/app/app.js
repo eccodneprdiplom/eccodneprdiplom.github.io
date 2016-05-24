@@ -420,9 +420,9 @@ angular
 				prepPdf[i][1] = prepPdf[i][1].toString()
 			}
 			var lat = markerForPdf.position.lat + '';
-			lat = lat.split('.').join(',')+'’'
+			lat = lat.split('.').join(',')+'°';
 			var lng = markerForPdf.position.lng + '';
-			lng = lng.split('.').join(',')+'’';
+			lng = lng.split('.').join(',')+'°';
 			var fromDate = $scope.fromData.getTime();
 			var toDate = $scope.toData.getTime() + 11000000;
 			var tableForPdf = [
