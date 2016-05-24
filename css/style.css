@@ -93,3 +93,9 @@ body{
 	text-align: left;
 	font-weight: bold;
 }
+.active-graf {
+	background-color:#7cb927;
+}
+.active-tab {
+	color:#7cb927;
+}

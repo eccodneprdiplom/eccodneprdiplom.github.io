@@ -13,7 +13,7 @@
 		</tbody>
 		<tr ng-repeat="item in database.data track by $index" style='border: 2px solid black;'>
 			<td style='border: 2px solid black;'>{{item.place}}</td>
-			<td style='border: 2px solid black;'>{{item.dateData | date:'MMMM yyyy'}}</td>
+			<td style='border: 2px solid black;'>{{monthPlusYear(item.dateData)}}</td>
 			<td style='border: 2px solid black;'>{{item.phosphates}}</td>
 			<td style='border: 2px solid black;'>{{item.nitrogenAmmonia}}</td>
 			<td style='border: 2px solid black;'>{{item.oil}}</td>

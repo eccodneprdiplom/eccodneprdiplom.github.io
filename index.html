@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/angular-toastr.min.css">
 	<link rel="stylesheet" href="css/style.css">
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNvMQyOtTZelU6ESs-38yQ7QPNaKbIQcU" type="text/javascript"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNvMQyOtTZelU6ESs-38yQ7QPNaKbIQcU&language=uk" type="text/javascript"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript" src="js/pdfmake.min.js"></script>
 	<script type="text/javascript" src="js/vfs_fonts.js"></script>
@@ -28,12 +28,12 @@
 						<a href='index.html'><img src="img/eco_logo.png" alt="Logo"></a>
 						<h4>Моніторинг водних ресурсів Дніпропетровської області</h4>
 					</div>
-						<nav class="main-nav">
+						<nav class="main-nav" ng-init='activeTab = 1'>
 							<ul>
-								<li><a href='#/'>Мапа</a></li>
-								<li><a href='#/grafs'>Графіки</a></li>
-								<li><a href='#/add'>Додавання даних</a></li>
-								<li><a href='#/about'>Про автора</a></li>
+								<li><a ng-click ="activeTab = 1" href='#/' ng-class="{'active-tab':activeTab === 1}">Мапа</a></li>
+								<li><a ng-click ="activeTab = 2" href='#/grafs' ng-class="{'active-tab':activeTab === 2}">Графіки</a></li>
+								<li><a ng-click ="activeTab = 3" href='#/add' ng-class="{'active-tab':activeTab === 3}">Додавання даних</a></li>
+								<li><a ng-click ="activeTab = 4" href='#/about' ng-class="{'active-tab':activeTab === 4}">Про автора</a></li>
 							</ul>
 						</nav>
 					</div>

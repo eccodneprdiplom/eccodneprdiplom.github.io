@@ -1,9 +1,9 @@
 <div class='container'>
 	<div class='grafs-btn'>
-		<a class = 'btn btn-primary' ng-click='changeElement("nitrogenAmmonia")'>Амонійний азот</a>
-		<a class = 'btn btn-primary' ng-click='changeElement("phosphates")'>Фосфати</a>
-		<a class = 'btn btn-primary' ng-click='changeElement("oil")'>Нафтопродукти</a>
-		<a class = 'btn btn-primary' ng-click='changeElement("others")'>Інші</a>
+		<a class = 'btn btn-primary' ng-click='activeTabGraf = 1; changeElement("nitrogenAmmonia")' ng-class="{'active-graf': lastGraf === 'nitrogenAmmonia'}">Амонійний азот</a>
+		<a class = 'btn btn-primary' ng-click='activeTabGraf = 2; changeElement("phosphates")' ng-class="{'active-graf': lastGraf === 'phosphates'}">Фосфати</a>
+		<a class = 'btn btn-primary' ng-click='activeTabGraf = 3; changeElement("oil")' ng-class="{'active-graf': lastGraf === 'oil'}">Нафтопродукти</a>
+		<a class = 'btn btn-primary' ng-click='activeTabGraf = 4; changeElement("others")' ng-class="{'active-graf': lastGraf === 'others'}">Інші</a>
 	</div>
 	<div  class='grafs-btn'>
 		<label>

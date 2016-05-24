@@ -154,7 +154,7 @@ angular
 	}
 	function prepareDataGraf (key,fromData,toData){
 		table();
-		var mounth = ['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'];
+		var month = ['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'];
 		var bodyTable = databaseValue.allTableData[key];
 		bodyTable.sort(function compareNumeric(a, b) {if (a[0] > b[0]) return 1; if (a[0] < b[0]) return -1;});
 		var fromToData = [];
@@ -188,17 +188,15 @@ angular
 		var showDate = new Date();
 		var numberOfValues = databaseValue.allTableData.head.length;
 		for(i = 0; i < fromToData.length;i++){
-			
-				for(j = 0; j < numberOfValues;j++){
-					if(!fromToData[i][j]){
-						fromToData[i][j] = 0;
-					}
+			for(j = 0; j < numberOfValues;j++){
+				if(!fromToData[i][j]){
+					fromToData[i][j] = 0;
 				}
-			
+			}
 		}
 		for (i = 0;i < fromToData.length;i++){
 			showDate.setTime(fromToData[i][0]);			
-			fromToData[i][0] = mounth[showDate.getMonth()] +' '+ showDate.getFullYear();
+			fromToData[i][0] = month[showDate.getMonth()] +' '+ showDate.getFullYear();
 		}
 		fromToData.unshift(databaseValue.allTableData.head);
 		databaseValue.selectedGrafs = fromToData;
@@ -375,8 +373,9 @@ angular
     zoom: 10
   });
   }
-  var mounth = ['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'];
+  var month = ['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'];
   $scope.$on('i am here',function(){
+	  // try {
 		TableAndMarkerService.prepareDataDiag($scope.fromData,$scope.toData);
 		var pageDiag = document.getElementById('diagramma');
 		var title = pageDiag.classList[0]
@@ -395,23 +394,36 @@ angular
 		google.charts.setOnLoadCallback(drawChart);
 		function drawChart() {
 			var data = google.visualization.arrayToDataTable(databaseValue.valuesForMarkers[title]);
-
+			if (+databaseValue.valuesForMarkers[title][1][1] <= 0 && +databaseValue.valuesForMarkers[title][2][1] <= 0 && +databaseValue.valuesForMarkers[title][3][1] <= 0 && +databaseValue.valuesForMarkers[title][4][1] <= 0){
+				pageDiag.innerHTML = ""
+				var parag = document.createElement("h2");
+				parag.className = "no-graf"
+				parag.style.width = "100%";
+				parag.style.height = "350px";
+				parag.style.marginTop = "164px"
+				parag.style.textAlign = "center";
+				parag.innerText = "На данний проміжок часу не має данних"
+				pageDiag.appendChild(parag)
+				return
+			}
 			var options = {
 				legend: 'right',
 				pieSliceText: 'label',
-				pieStartAngle: 100
+				pieStartAngle: 100,
+				title:title
 			};
 
 			var chart = new google.visualization.PieChart(pageDiag);
 			chart.draw(data, options);
+			window.b = databaseValue.valuesForMarkers[title];
 			var prepPdf = databaseValue.valuesForMarkers[title].slice(0);
 			for(i = 1;i < prepPdf.length;i++){
 				prepPdf[i][1] = prepPdf[i][1].toString()
 			}
 			var lat = markerForPdf.position.lat + '';
-			lat = lat.split('.').join('°')+'’'
+			lat = lat.split('.').join(',')+'’'
 			var lng = markerForPdf.position.lng + '';
-			lng = lng.split('.').join('°')+'’';
+			lng = lng.split('.').join(',')+'’';
 			var fromDate = $scope.fromData.getTime();
 			var toDate = $scope.toData.getTime() + 11000000;
 			var tableForPdf = [
@@ -428,7 +440,7 @@ angular
 			for (i = 0;i < bodyForPdf.length;i++){
 				var dateFromData = new Date();
 				dateFromData.setTime(bodyForPdf[i][0]);
-				bodyForPdf[i][0] = '' + mounth[dateFromData.getMonth()] + ' ' + dateFromData.getFullYear ()
+				bodyForPdf[i][0] = '' + month[dateFromData.getMonth()] + ' ' + dateFromData.getFullYear ()
 			}
 			for(i = 0;i < tableForPdf.length;i++){
 				total[0] = +bodyForPdf[i][1] + total[0];
@@ -453,7 +465,7 @@ angular
 					fontSize:16
 				},		
 				 {
-					text:'За період: '+mounth[$scope.fromData.getMonth()]+' ' + $scope.fromData.getFullYear() + ' - ' +mounth[$scope.toData.getMonth()]+' ' + $scope.toData.getFullYear(),
+					text:'За період: '+month[$scope.fromData.getMonth()]+' ' + $scope.fromData.getFullYear() + ' - ' +month[$scope.toData.getMonth()]+' ' + $scope.toData.getFullYear(),
 					margin:[0,0,0,10],
 					alignment: 'left'
 				},
@@ -489,6 +501,9 @@ angular
 			href.className = "btn btn-primary",
 			pageDiag.appendChild(href);
 		}
+	  // }catch (err){
+		  
+	  // }
   })
   TableAndMarkerService.table();
   $scope.changeDiag = function (){
@@ -500,7 +515,7 @@ angular
    var settedMarkers = [];
    var markPage = [];
      for(var i = 0; i < databaseValue.googleMarkers.length;i++){
-		var contentString = '<div id="diagramma" class="'+databaseValue.googleMarkers[i].title+'" style="width:550px;height:auto;min-height:350px"></div>';
+		var contentString = '<div id="diagramma"title="'+databaseValue.googleMarkers[i].title+'" class="'+databaseValue.googleMarkers[i].title+'" style="width:550px;height:auto;min-height:350px"></div>';
 		databaseValue.googleMarkers[i].map = map;
 		databaseValue.googleMarkers[i].icon = imageFactory;
 		var infowindow = new google.maps.InfoWindow({
@@ -508,6 +523,7 @@ angular
 		});
 		$scope["marker"+i] = new google.maps.Marker(databaseValue.googleMarkers[i]);
 		$scope["marker"+i].content = infowindow
+		window["marker"+i] = $scope["marker"+i]
 		$scope["marker"+i].addListener('click', function() {
 			this.content.open(map, this);
 			$rootScope.$broadcast('i am here',this)
@@ -548,34 +564,53 @@ angular
 	} catch (err){
 		
 	} 
-	var lastGraf = "nitrogenAmmonia";
+	$scope.lastGraf = "nitrogenAmmonia";
 	TableAndMarkerService.table()
-	TableAndMarkerService.prepareDataGraf("nitrogenAmmonia");
 	google.charts.setOnLoadCallback(drawChart);
+	TableAndMarkerService.prepareDataGraf("nitrogenAmmonia",$scope.fromData,$scope.toData)
 	$scope.changeElement = function(index){
 		var variable = index;
 		if (variable){
-			lastGraf = variable;
+			$scope.lastGraf = variable;
 		} else {
-			variable = lastGraf;
+			variable = $scope.lastGraf;
 		}
 		TableAndMarkerService.prepareDataGraf(variable,$scope.fromData,$scope.toData)
 		drawChart()
 	}
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable(databaseValue.selectedGrafs);
-
+		console.log(data);
+		var elem = document.getElementById('curve_chart');
+		if (data.Lf.length === 0){
+			elem.innerHTML = ""
+			var parag = document.createElement("h2");
+			parag.className = "no-graf"
+			parag.style.width = "100%";
+			parag.style.height = "500px";
+			parag.style.marginTop = "139px";
+			parag.style.marginLeft = "250px";
+			parag.innerText = "На данний проміжок часу не має данних"
+			elem.appendChild(parag)
+			return
+		}
 		var options = {
 			title: '',
 			legend: { position: 'right' }
 		};
 
-		var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+		var chart = new google.visualization.LineChart(elem);
 
 		chart.draw(data, options);
 	}
 })
 .controller('removeController',function($scope,TableAndMarkerService,databaseValue,Backendless,toastr){
+	var month = ['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'];
+	$scope.monthPlusYear = function(itemDate){
+		var newDate = new Date ();
+		newDate.setTime(itemDate)
+		return month[newDate.getMonth()] + ' ' + newDate.getFullYear()
+	}
 	$scope.database = TableAndMarkerService.fixServerData();
 	$scope.remove = function (item) {
 		try{
