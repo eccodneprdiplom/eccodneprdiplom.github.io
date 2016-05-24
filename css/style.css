@@ -99,3 +99,6 @@ body{
 .active-tab {
 	color:#7cb927;
 }
+.add-form  label input{
+	width: 193px;
+}

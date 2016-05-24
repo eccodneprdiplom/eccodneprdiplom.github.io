@@ -580,7 +580,6 @@ angular
 	}
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable(databaseValue.selectedGrafs);
-		console.log(data);
 		var elem = document.getElementById('curve_chart');
 		if (data.Lf.length === 0){
 			elem.innerHTML = ""

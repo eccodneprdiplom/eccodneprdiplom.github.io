@@ -1,6 +1,6 @@
 <div class='container'>
 	<h2>Кількість скинутих забруднюючих речовин (тонн / год )</h2>
-	<form ng-submit='edit()' name='ecoForm'>
+	<form ng-submit='edit()' name='ecoForm' class='add-form'>
 		<label>
 			<p>Дата:</p>
 			<input type='month' ng-model='dateData' name='dateData' required>
@@ -11,29 +11,29 @@
 		</label>
 		<label>
 			<p>Фосфати</p>
-			<input type='number' min='0' max='max' ng-model='phosphates' name='phosphates' required>
+			<input type='number' min='0' max='10000' ng-model='phosphates' name='phosphates' required>
 		</label>
 		<label>
 			<p>Азот амонійний</p>
-			<input type='number' min='0' max='max' ng-model='nitrogenAmmonia' name='nitrogenAmmonia' required>
+			<input type='number' min='0' max='10000' ng-model='nitrogenAmmonia' name='nitrogenAmmonia' required>
 		</label>
 		<label>
 			<p>Нафтопродукти</p>
-			<input type='number' min='0' max='max' ng-model='oil' name='oil' required>
+			<input type='number' min='0' max='10000' ng-model='oil' name='oil' required>
 		</label>
 		<label>
 			<p>Інші</p>
-			<input type='number' min='0' max='max' ng-model='others' name='others' required>
+			<input type='number' min='0' max='10000' ng-model='others' name='others' required>
 		</label>
 		<label>
 			<p>Широта</p>
-			<input type='number' step='0.000001' ng-model='latitude' name='latitude' required>
+			<input type='number' min='-180' max='180' step='0.000001' ng-model='latitude' name='latitude' required>
 		</label>
 		<label>
 			<p>Довгота</p>
-			<input type='number' step='0.000001' ng-model='longitude' name='longitude' required>
+			<input type='number' min='-180' max='180' step='0.000001' ng-model='longitude' name='longitude' required>
 		</label>
-		<button type='submit' ng-disabled="ecoForm.$invalid" class='btn btn-primary'>Додати (редагувати) замір</button>
+		<button type='submit' class='btn btn-primary'>Додати (редагувати) замір</button>
 	</form>
 	<a class='btn btn-primary' href='#/remove'>Видалення данних</a>
 </div>
