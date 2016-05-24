@@ -17,8 +17,7 @@ angular
 	})
 	.when('/grafs',{
 		templateUrl: './templates/grafs.html',
-		controller: 'grafsController',
-		cache: true
+		controller: 'grafsController'
 	})
 	.when('/remove',{
 		templateUrl:'./templates/remove.html',
